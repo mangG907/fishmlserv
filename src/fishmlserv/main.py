@@ -11,7 +11,7 @@ def read_root():
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
-@app.get("fish")
+@app.get("/fish")
 def fish(length:float, weight:float):
     """
     물고기의 종류
@@ -26,10 +26,9 @@ def fish(length:float, weight:float):
         prediction = "도미"
     else:
         prediction = "방어"
-
     return {
-                "prediction": prediction,
-                "length": length, 
-                "weight": weight
+            "prediction": prediction,
+            "length": length, 
+            "weight": weight
             }
 
