@@ -1,7 +1,7 @@
-FROM python:3.11
+#FROM python:3.11
 #FROM python:3.11.9-slim-bullseye
 #FROM python:3.11.9-alpine3.20
-
+FROM datamario24/python311scikitlearn-fastapi:1.0.0
 WORKDIR /code
 
 #COPY ./requirements.txt /code/requirements.txt 
