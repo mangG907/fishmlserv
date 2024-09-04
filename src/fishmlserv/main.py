@@ -3,6 +3,10 @@ from fastapi import FastAPI
 from fishmlserv.model.manager import get_model_path
 import pickle
 app = FastAPI()
+# 모델을 가져와보아요
+model_path = get_model_path()
+with open(model_path, 'rb') as f:
+    fish_model = pickle.load(f)
 
 @app.get("/")
 def read_root():
@@ -11,12 +15,6 @@ def read_root():
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
-
-# 모델을 가져와보아요
-model_path = get_model_path()
-with open(model_path, 'rb') as f:
-    fish_model = pickle.load(f)
-fish_class = fish_model.predict([[length, weight]])
 
 @app.get("/fish")
 def fish(length:float, weight:float):
@@ -38,7 +36,8 @@ def fish(length:float, weight:float):
             "length": length, 
             "weight": weight
             }
-
+    
+    fish_class = fish_model.predict([[length, weight]])
     # fish_name = "몰라"
     if fish_class == 0:
         fish_name = "도미"
