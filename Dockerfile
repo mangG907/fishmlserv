@@ -13,7 +13,7 @@ COPY /src/fishmlserv/knn_pred.py /code/
 
 # 모델 서빙만 (의존성 위 BASE 이미지에서 모두 설치했다.)
 #RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-RUN pip install --no-cache-dir --upgrade git+https://github.com/mangG907/fishmlserv.git@1.0/find_k
+RUN pip install --no-cache-dir --upgrade git+https://github.com/mangG907/fishmlserv.git@1.1/find_k
 RUN chmod +x /code/get-model-path.py
 RUN ln -s /code/get-model-path.py /usr/local/bin/get-model-path
 RUN chmod +x /code/knn_pred.py
